@@ -1,0 +1,15 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  nmap:
+    lang: Dockerfile
+    handler: ./faas-nmap
+    image: devalias/faas-nmap
+    environment:
+      # Watchdog Env Overrides (https://github.com/openfaas/faas/tree/master/watchdog)
+      read_timeout: 10
+      write_timeout: 120
+      exec_timeout: 140
+      write_debug: true
